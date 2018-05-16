@@ -1,0 +1,85 @@
+#userpagebox {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  min-height: 85%;
+  height: 85%;
+  background-color: lightseagreen;
+}
+
+#otherusers {
+  position: absolute;
+  top: 15%;
+  right: 0;
+  height: 51%;
+  width: 25%;
+  background-color: seagreen;
+}
+
+#specificuser {
+  height: 100%;
+}
+
+#userinfobox {
+  height: 60%;
+  background-color: gainsboro;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#userpicinfo {
+  width: 30%;
+  height: 100%;
+  /* outline: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#userpicinfopicbox {
+  /* outline: 1px solid green; */
+  height: 50%;
+  margin: auto;
+}
+
+#userpicinfopicbox img {
+  margin-left: 2em;
+  height: 100%;
+  width: 90%;
+}
+
+#communityprops {
+  /* outline: 1px solid blue; */
+  height: 30%;
+  text-align: center;
+}
+
+#usertextinfo {
+  width: 45%;
+  height: 100%;
+  /* outline: 1px solid red; */
+  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  /* justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+  align-content: space-around; */
+}
+
+#usertextinfo h1 {
+  /* padding-top: 1em; */
+  margin: auto;
+  width: 60%;
+  border-bottom: 1px solid black;
+}
+
+#usertextinfo h3 {
+  margin: auto;
+  width: 50%;
+  border-bottom: 1px solid black;
+}
+
+#userarticles {
+  min-height: 40%;
+  background-color: darkgray;
+}
