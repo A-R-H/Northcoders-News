@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { getAllArticles, getUserByUsername } from "../api";
+import { Link } from "react-router-dom";
 import "./UserPage.css";
-import axios from "axios";
 
 class UserPage extends Component {
   state = {
@@ -15,13 +16,9 @@ class UserPage extends Component {
 
   componentDidMount() {
     const user = this.props.match.params.username;
-    axios
-      .get(`https://northcoders-news-back.herokuapp.com/api/users/${user}`)
-      .then(userDB => {
-        return Promise.all([
-          axios.get("https://northcoders-news-back.herokuapp.com/api/articles"),
-          userDB.data.user
-        ]).then(([{ data: articles }, user]) => {
+    getUserByUsername(user).then(userDB => {
+      return Promise.all([getAllArticles(), userDB.data.user]).then(
+        ([{ data: articles }, user]) => {
           const { _id, username, name, avatar_url } = user;
           const usersArticles = articles.articles.filter(article => {
             return article.created_by._id === _id;
@@ -35,8 +32,9 @@ class UserPage extends Component {
             },
             usersArticles
           });
-        });
-      });
+        }
+      );
+    });
   }
 
   render() {
@@ -49,7 +47,7 @@ class UserPage extends Component {
     const interestString = this.findInterests(usersArticles);
     return (
       <div id="userpagebox">
-        <div id="otherusers">Other Users</div>
+        <div id="otherusers">Similar Users</div>
         <div id="userinfobox">
           <div id="userpicinfo">
             <div id="userpicinfopicbox">
@@ -65,7 +63,33 @@ class UserPage extends Component {
             <p>{interestString}</p>
           </div>
         </div>
-        <div id="userarticles">User Articles</div>
+        <div id="userarticles">
+          <div id="userarticlesheader">
+            <h2>Articles Written</h2>
+          </div>
+          {usersArticles.map((article, i) => {
+            return (
+              <div key={`articlecard${i}`} className="card">
+                <div className="card-header">
+                  {" "}
+                  <Link to="/articles">{article.belongs_to.title}</Link>
+                </div>
+                <div className="card-body">
+                  <blockquote className="blockquote mb-0">
+                    <Link to={`/articles/${article._id}`}>
+                      {" "}
+                      <p>{article.title}</p>
+                    </Link>
+                    <footer className="blockquote-footer">
+                      <cite>Comments:</cite> {article.comments}
+                      <cite> Props:</cite> {article.votes}
+                    </footer>
+                  </blockquote>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

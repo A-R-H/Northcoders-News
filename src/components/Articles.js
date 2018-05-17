@@ -12,7 +12,7 @@ class Articles extends Component {
       <div id="articlesunderbox">
         <div id="mainarticles">Main View</div>
         <div id="sortbar">
-          <RadioGroup value={filtering} vertical="true">
+          <RadioGroup value={filtering} horizontal>
             <RadioButton value="all">All Articles</RadioButton>
             <RadioButton value="coding">Coding</RadioButton>
             <RadioButton value="cooking">Cooking</RadioButton>

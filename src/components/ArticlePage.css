@@ -1,0 +1,119 @@
+#articlepagebox {
+  min-height: 85%;
+  /* background-color: aquamarine; */
+}
+
+#articlepage {
+  /* background-color: gainsboro; */
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+#avatarbox {
+  max-width: 20%;
+  width: 20%;
+  max-height: 10%;
+  height: 10%;
+  margin: 1em auto;
+  padding-bottom: 1em;
+  /* outline: 1px solid green; */
+  border-bottom: 1px solid black;
+}
+
+#avatarbox img {
+  max-height: 90%;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+}
+
+#articlepage > h1 {
+  margin: auto;
+  width: 70%;
+  margin-top: 0.8em;
+  padding-bottom: 0.8em;
+  border-bottom: 1px solid black;
+}
+
+#articlepage > h3 {
+  margin: auto;
+  width: 50%;
+  padding-bottom: 0.8em;
+  border-bottom: 1px solid black;
+}
+
+#articlepage > p {
+  padding: 4em;
+}
+
+#joinconv {
+  /* margin: 0;
+  padding: 0; */
+}
+
+#commentsbox {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  border: 1px solid red;
+  border-radius: 15px;
+}
+
+#sendcommentbox {
+  width: 90%;
+  margin: 1em auto;
+  height: 5vh;
+}
+
+#imgwrap {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#imgwrap img {
+  /* max-height: 100%;
+  max-width: 100%;
+  border: 1px solid gray;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  z-index: 9999; */
+}
+
+.input-group-prepend > div {
+  width: 100%;
+  height: 100%;
+}
+
+.input-group-prepend button {
+  height: 100%;
+  border-radius: 0;
+  padding-bottom: 1px;
+}
+
+#thumb {
+  /* margin-bottom: 1px; */
+  max-height: 100%;
+  max-width: 50%;
+  border: 1px solid gray;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  z-index: 9999;
+}
+
+/* #thumbavwrap {
+  width: 10%;
+  max-width: 10%;
+  min-width: 5%;
+} */
+
+.singlecomment {
+  /* border: 1px solid gainsboro; */
+}
+
+.oddcomment {
+  background-color: gainsboro;
+}

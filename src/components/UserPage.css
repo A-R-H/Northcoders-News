@@ -21,7 +21,7 @@
 }
 
 #userinfobox {
-  height: 60%;
+  min-height: 60%;
   background-color: gainsboro;
   display: flex;
   flex-flow: row nowrap;
@@ -29,7 +29,7 @@
 
 #userpicinfo {
   width: 30%;
-  height: 100%;
+  min-height: 100%;
   /* outline: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
@@ -37,40 +37,47 @@
 
 #userpicinfopicbox {
   /* outline: 1px solid green; */
-  height: 50%;
+  min-height: 50%;
   margin: auto;
 }
 
 #userpicinfopicbox img {
   margin-left: 2em;
-  height: 100%;
+  min-height: 100%;
   width: 90%;
 }
 
 #communityprops {
   /* outline: 1px solid blue; */
-  height: 30%;
+  min-height: 30%;
   text-align: center;
 }
 
 #usertextinfo {
   width: 45%;
-  height: 100%;
-  /* outline: 1px solid red; */
+  min-height: 40%;
+  /* outline: 1px solid red;
+  z-index: 999999; */
   text-align: center;
   display: flex;
   flex-flow: column nowrap;
-  /* justify-content: space-around;
+  /* justify-content: space-between;
   justify-items: center;
   align-items: center;
-  align-content: space-around; */
+  align-content: space-between; */
 }
 
 #usertextinfo h1 {
-  /* padding-top: 1em; */
-  margin: auto;
-  width: 60%;
+  /* outline: 1px solid red; */
+  margin: 0 auto;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  width: 30%;
   border-bottom: 1px solid black;
+}
+
+#usertextinfo p {
+  margin: 0.8em;
 }
 
 #usertextinfo h3 {
@@ -80,6 +87,25 @@
 }
 
 #userarticles {
-  min-height: 40%;
-  background-color: darkgray;
+  /* min-height: 40%; */
+  background-color: gainsboro;
+  padding-bottom: 1em;
+}
+
+#userarticlesheader {
+  text-align: center;
+  width: 40%;
+  margin: auto;
+  border-bottom: 1px solid black;
+  margin-bottom: 2em;
+}
+
+#userarticles .card {
+  border: 0px solid white;
+  margin: 4px auto;
+  width: 60%;
+}
+
+#userarticles .card-body {
+  /* border: 0px; */
 }
