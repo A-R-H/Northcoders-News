@@ -1,0 +1,16 @@
+#postpagebox {
+  height: 85%;
+  background-color: cornflowerblue;
+}
+
+#formbox {
+  width: 80%;
+  height: 70%;
+  margin: auto;
+  padding-top: 10%;
+  /* outline: 1px solid black; */
+}
+
+.bodyinput {
+  max-width: 100%;
+}

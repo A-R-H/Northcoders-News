@@ -211,3 +211,21 @@
 .oddcomment {
   background-color: gainsboro;
 }
+
+#commentdeletebox {
+  position: relative;
+  width: 15%;
+  min-height: 100%;
+  /* outline: 1px solid blue; */
+}
+
+#commentdeletebox p {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  /* outline: 1px solid blue; */
+}
+
+.clickable:hover {
+  cursor: pointer;
+}

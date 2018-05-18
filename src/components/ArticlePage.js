@@ -6,7 +6,8 @@ import {
   getUserByUsername,
   postComment,
   voteOnArticle,
-  voteOnComment
+  voteOnComment,
+  deleteComment
 } from "../api";
 import moment from "moment";
 import ReactTooltip from "react-tooltip";
@@ -19,7 +20,8 @@ class ArticlePage extends Component {
     article: null,
     comments: [],
     userComment: "",
-    userVoted: null
+    userVoted: null,
+    deletePressed: null
   };
 
   componentDidMount() {
@@ -54,7 +56,7 @@ class ArticlePage extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { id } = this.props.match.params;
-    if (prevState.userComment) {
+    if (prevState.userComment || prevState.deletePressed) {
       getCommentsByArticleId(id).then(({ data }) => {
         const comments = data.comments.sort((a, b) => {
           return +b.created_at - +a.created_at;
@@ -70,7 +72,8 @@ class ArticlePage extends Component {
       comments,
       userComment,
       currentUser,
-      userVoted
+      userVoted,
+      deletePressed
     } = this.state;
     const rightArrow = React.createElement(Arrow, {
       size: 25,
@@ -219,6 +222,42 @@ class ArticlePage extends Component {
                         </p>
                         <p>{comment.body}</p>
                       </div>
+                      {currentUser._id === comment.created_by._id && (
+                        <div id="commentdeletebox">
+                          {deletePressed !== comment._id && (
+                            <p
+                              className="clickable"
+                              onClick={() =>
+                                this.handleDeletePress(comment._id)
+                              }
+                            >
+                              <cite>delete</cite>
+                            </p>
+                          )}
+                          {deletePressed === comment._id && (
+                            <p>
+                              <cite>Are you sure?</cite>{" "}
+                              <cite
+                                className="clickable"
+                                onClick={() =>
+                                  this.handleConfirmPress(true, comment._id)
+                                }
+                              >
+                                Yes
+                              </cite>
+                              {" / "}
+                              <cite
+                                className="clickable"
+                                onClick={() =>
+                                  this.handleConfirmPress(false, comment._id)
+                                }
+                              >
+                                No
+                              </cite>
+                            </p>
+                          )}
+                        </div>
+                      )}
                       <ReactTooltip />
                     </div>
                   </div>
@@ -339,6 +378,22 @@ class ArticlePage extends Component {
           });
         });
       }
+    }
+  };
+
+  handleDeletePress = comment_id => {
+    this.setState({ deletePressed: comment_id });
+  };
+
+  handleConfirmPress = (yes, comment_id) => {
+    if (!yes) {
+      this.setState({ deletePressed: null });
+    } else {
+      deleteComment(comment_id).then(() => {
+        this.setState({
+          deletePressed: null
+        });
+      });
     }
   };
 }

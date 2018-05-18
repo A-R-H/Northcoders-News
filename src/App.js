@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import UserPage from "./components/UserPage";
 import Articles from "./components/Articles";
 import ArticlePage from "./components/ArticlePage";
+import PostArticle from "./components/PostArticle";
 
 class App extends Component {
   state = {
@@ -16,6 +17,13 @@ class App extends Component {
       <div id="appbox">
         <Heading currentUser={currentUser} />
         <Switch>
+          <Route
+            exact
+            path="/post"
+            render={props => (
+              <PostArticle {...props} currentUser={currentUser} />
+            )}
+          />
           <Route
             exact
             path="/articles/:id"

@@ -45,3 +45,21 @@ export const voteOnComment = (comment_id, vote) => {
     `https://northcoders-news-back.herokuapp.com/api/comments/${comment_id}?vote=${vote}`
   );
 };
+
+export const deleteComment = comment_id => {
+  return axios.delete(
+    `https://northcoders-news-back.herokuapp.com/api/comments/${comment_id}`
+  );
+};
+
+export const postArticle = (title, body, topic, created_by) => {
+  const formattedArticle = {
+    title,
+    body,
+    created_by
+  };
+  return axios.post(
+    `https://northcoders-news-back.herokuapp.com/api/topics/${topic}/articles`,
+    formattedArticle
+  );
+};

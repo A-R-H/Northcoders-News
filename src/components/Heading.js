@@ -42,10 +42,13 @@ const Heading = ({ currentUser }) => (
       </div>
       <div id="space" />
       <div id="headprofile">
-        <Link to={`/${currentUser}`}>
-          <button>View Profile</button>
+        <Link to="/post">
+          <button>Post article</button>
         </Link>
-        <button>Log out</button>
+        <Link to={`/${currentUser}`}>
+          <button>View profile</button>
+        </Link>
+        <button disabled>Log out</button>
       </div>
     </div>
   </div>
