@@ -50,6 +50,59 @@
   padding: 4em;
 }
 
+#proparrowbox {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#rightarrows {
+  margin-left: 55%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#articlepageprops {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#articlepagepropbtns span {
+  margin: auto;
+  font-size: 3em;
+}
+
+#articlepagepropbtns button {
+  font-size: 3em;
+}
+
+#plusplus {
+  background-color: transparent;
+  border: 0;
+}
+
+.votedup {
+  color: green;
+}
+
+#minusminus {
+  background-color: transparent;
+  border: 0;
+}
+
+.voteddown {
+  color: red;
+}
+
+#articlepagepropbtns button:hover {
+  cursor: pointer;
+}
+
+#downarrows {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: auto;
+}
+
 #joinconv {
   /* margin: 0;
   padding: 0; */
@@ -58,9 +111,16 @@
 #commentsbox {
   width: 80%;
   margin: 0 auto;
+  margin-top: 1em;
   margin-bottom: 1em;
   border: 1px solid red;
   border-radius: 15px;
+}
+
+#commentflex {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
 }
 
 #sendcommentbox {
@@ -109,6 +169,40 @@
   max-width: 10%;
   min-width: 5%;
 } */
+
+#commenttext {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: auto;
+}
+
+#commentpropbtns {
+  width: 10%;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  /* margin: 0 auto; */
+  /* margin-top: 0.5em; */
+}
+
+#commentvotes {
+  font-size: 1.4em;
+}
+
+#commentpropbtns button {
+  font-size: 2em;
+  margin: auto;
+  /* margin-top: 0.2em; */
+}
+
+#commentpropbtns button:hover {
+  cursor: pointer;
+}
+
+#commentpropbtns span {
+  font-size: 2em;
+}
 
 .singlecomment {
   /* border: 1px solid gainsboro; */

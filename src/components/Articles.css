@@ -9,6 +9,28 @@
   min-height: 100%;
   height: 100%;
   width: 70%;
+  /* outline: 1px solid green; */
+}
+
+.articlesheaders {
+  text-align: center;
+}
+
+#mainarticles .card {
+  margin: 1em;
+}
+
+#mainarticles .card * {
+  padding: 0;
+}
+
+.articlesbodies {
+  /* padding: 0.6em;
+  padding-left: 1.2em; */
+  white-space: normal;
+  word-wrap: break-word;
+  margin-left: 1.2em;
+  margin: 0.6em;
 }
 
 #sortbar {
@@ -17,7 +39,10 @@
   background-color: lightsalmon;
 }
 
-#test {
+#filterbuttonbox {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
+  height: 15%;
+  outline: 1px solid black;
+  justify-content: space-around;
 }

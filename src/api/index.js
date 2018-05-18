@@ -33,3 +33,15 @@ export const postComment = (comment, article_id, user_id) => {
     formattedComment
   );
 };
+
+export const voteOnArticle = (article_id, vote) => {
+  return axios.put(
+    `https://northcoders-news-back.herokuapp.com/api/articles/${article_id}?vote=${vote}`
+  );
+};
+
+export const voteOnComment = (comment_id, vote) => {
+  return axios.put(
+    `https://northcoders-news-back.herokuapp.com/api/comments/${comment_id}?vote=${vote}`
+  );
+};

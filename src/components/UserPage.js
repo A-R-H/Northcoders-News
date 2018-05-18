@@ -72,7 +72,14 @@ class UserPage extends Component {
               <div key={`articlecard${i}`} className="card">
                 <div className="card-header">
                   {" "}
-                  <Link to="/articles">{article.belongs_to.title}</Link>
+                  <Link
+                    to={{
+                      pathname: "/articles",
+                      state: { filtering: article.belongs_to.title }
+                    }}
+                  >
+                    {article.belongs_to.title}
+                  </Link>
                 </div>
                 <div className="card-body">
                   <blockquote className="blockquote mb-0">

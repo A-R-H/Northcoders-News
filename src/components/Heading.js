@@ -17,18 +17,26 @@ const Heading = ({ currentUser }) => (
           <p>|</p>
           <p>
             <Link
-              to={{ pathname: "/articles", state: { filtering: "coding" } }}
+              to={{ pathname: "/articles", state: { filtering: "Coding" } }}
             >
               Coding
             </Link>
           </p>
           <p>|</p>
           <p>
-            <Link to="/articles">Cooking</Link>
+            <Link
+              to={{ pathname: "/articles", state: { filtering: "Cooking" } }}
+            >
+              Cooking
+            </Link>
           </p>
           <p>|</p>
           <p>
-            <Link to="/articles">Football</Link>
+            <Link
+              to={{ pathname: "/articles", state: { filtering: "Football" } }}
+            >
+              Football
+            </Link>
           </p>
         </div>
       </div>
