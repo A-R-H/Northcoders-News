@@ -53,7 +53,8 @@ class ArticlePage extends Component {
           article: article.article,
           comments,
           currentUser: user.user,
-          userVoted
+          userVoted,
+          articleNotFound: false
         });
       })
       .catch(err => {
