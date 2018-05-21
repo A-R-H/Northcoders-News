@@ -22,14 +22,19 @@ class UserPage extends Component {
     getUserByUsername(user)
       .then(userDB => {
         return Promise.all([getAllArticles(), userDB.data.user]).then(
-          ([{ data: articles }, user]) => {
+          ([
+            {
+              data: { articles }
+            },
+            user
+          ]) => {
             const { _id, username, name, avatar_url } = user;
-            const usersArticles = articles.articles.filter(article => {
+            const usersArticles = articles.filter(article => {
               return article.created_by._id === _id;
             });
-            usersArticles.sort((a,b) => {
-              return +b.votes - +a.votes
-            })
+            usersArticles.sort((a, b) => {
+              return +b.votes - +a.votes;
+            });
             this.setState({
               user: {
                 _id,
@@ -37,7 +42,8 @@ class UserPage extends Component {
                 name,
                 avatar_url
               },
-              usersArticles
+              usersArticles,
+              userNotFound: false
             });
           }
         );
@@ -53,10 +59,18 @@ class UserPage extends Component {
       getUserByUsername(user)
         .then(userDB => {
           return Promise.all([getAllArticles(), userDB.data.user]).then(
-            ([{ data: articles }, user]) => {
+            ([
+              {
+                data: { articles }
+              },
+              user
+            ]) => {
               const { _id, username, name, avatar_url } = user;
-              const usersArticles = articles.articles.filter(article => {
+              const usersArticles = articles.filter(article => {
                 return article.created_by._id === _id;
+              });
+              usersArticles.sort((a, b) => {
+                return +b.votes - +a.votes;
               });
               this.setState({
                 user: {
@@ -65,7 +79,8 @@ class UserPage extends Component {
                   name,
                   avatar_url
                 },
-                usersArticles
+                usersArticles,
+                userNotFound: false
               });
             }
           );
