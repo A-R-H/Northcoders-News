@@ -27,6 +27,9 @@ class UserPage extends Component {
             const usersArticles = articles.articles.filter(article => {
               return article.created_by._id === _id;
             });
+            usersArticles.sort((a,b) => {
+              return +b.votes - +a.votes
+            })
             this.setState({
               user: {
                 _id,
