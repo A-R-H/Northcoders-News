@@ -1,6 +1,6 @@
 #postpagebox {
   height: 85%;
-  background-color: cornflowerblue;
+  background-color: #dbdbdb;
 }
 
 #formbox {
@@ -8,9 +8,21 @@
   height: 70%;
   margin: auto;
   padding-top: 10%;
-  /* outline: 1px solid black; */
 }
 
 .bodyinput {
   max-width: 100%;
+}
+
+#formbox button {
+  background-color: transparent;
+  color: #272727;
+  border: 3px solid #272727;
+  border-radius: 5px;
+}
+
+#formbox button:hover {
+  color: #c7002f;
+  border-color: #c7002f;
+  cursor: pointer;
 }

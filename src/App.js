@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import "./App.css";
 import Heading from "./components/Heading";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import UserPage from "./components/UserPage";
 import Articles from "./components/Articles";
 import ArticlePage from "./components/ArticlePage";
 import PostArticle from "./components/PostArticle";
+import BadRoute from "./components/tools/BadRoute";
+import "./App.css";
 
 class App extends Component {
   state = {
@@ -31,12 +32,18 @@ class App extends Component {
               <ArticlePage {...props} currentUser={currentUser} />
             )}
           />
-          <Route exact path="/articles" component={Articles} />
+          <Route
+            exact
+            path="/articles"
+            render={props => <Articles {...props} />}
+          />
           <Route
             exact
             path="/:username"
             render={props => <UserPage {...props} />}
           />
+          <Route exact path="/" render={() => <Redirect to="/articles" />} />
+          <Route path="/" component={BadRoute} />
         </Switch>
       </div>
     );

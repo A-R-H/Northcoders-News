@@ -12,6 +12,8 @@ import {
 import moment from "moment";
 import ReactTooltip from "react-tooltip";
 import Arrow from "react-svg-arrow";
+import Loading from "./tools/Loading";
+import BadRoute from "./tools/BadRoute";
 import "./ArticlePage.css";
 
 class ArticlePage extends Component {
@@ -21,7 +23,8 @@ class ArticlePage extends Component {
     comments: [],
     userComment: "",
     userVoted: null,
-    deletePressed: null
+    deletePressed: null,
+    articleNotFound: false
   };
 
   componentDidMount() {
@@ -31,27 +34,31 @@ class ArticlePage extends Component {
       getArticleById(id),
       getCommentsByArticleId(id),
       getUserByUsername(currentUser)
-    ]).then(([{ data: article }, { data: comments }, { data: user }]) => {
-      comments = comments.comments.sort((a, b) => {
-        return +b.created_at - +a.created_at;
+    ])
+      .then(([{ data: article }, { data: comments }, { data: user }]) => {
+        comments = comments.comments.sort((a, b) => {
+          return +b.created_at - +a.created_at;
+        });
+        const userVoted = localStorage.getItem(`userVoted${article._id}`);
+        comments = comments.map(comment => {
+          const commentVoted = localStorage.getItem(
+            `comment.userVoted${comment._id}`
+          );
+          if (commentVoted) {
+            comment.userVoted = commentVoted;
+          }
+          return comment;
+        });
+        this.setState({
+          article: article.article,
+          comments,
+          currentUser: user.user,
+          userVoted
+        });
+      })
+      .catch(err => {
+        this.setState({ articleNotFound: true });
       });
-      const userVoted = localStorage.getItem(`userVoted${article._id}`);
-      comments = comments.map(comment => {
-        const commentVoted = localStorage.getItem(
-          `comment.userVoted${comment._id}`
-        );
-        if (commentVoted) {
-          comment.userVoted = commentVoted;
-        }
-        return comment;
-      });
-      this.setState({
-        article: article.article,
-        comments,
-        currentUser: user.user,
-        userVoted
-      });
-    });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -73,200 +80,220 @@ class ArticlePage extends Component {
       userComment,
       currentUser,
       userVoted,
-      deletePressed
+      deletePressed,
+      articleNotFound
     } = this.state;
     const rightArrow = React.createElement(Arrow, {
       size: 25,
-      color: "white",
+      color: "gainsboro",
       direction: "right",
       borderWidth: 5,
-      borderColor: "black"
+      borderColor: "#272727"
     });
     const downArrow = React.createElement(Arrow, {
       size: 25,
-      color: "white",
+      color: "gainsboro",
       direction: "bottom",
       borderWidth: 5,
-      borderColor: "black"
+      borderColor: "#272727"
     });
     return (
-      <div id="articlepagebox">
-        {article && (
-          <div id="articlepage">
-            <div id="avatarbox">
-              <img src={article.created_by.avatar_url} alt="Author" />
-            </div>
-            <h3>
-              {article.created_by.username} <cite>presents:</cite>
-            </h3>
-            <h1>{article.title}</h1>
-            <p>{article.body}</p>
-            <div id="proparrowbox">
-              <div id="joinconv">Join the conversation!</div>
-              <div id="rightarrows">
-                {rightArrow}
-                {rightArrow}
-                <div id="articlepageprops">
-                  <div>
-                    <h1>{article.votes}</h1>
-                    <p>Community props passed</p>
+      <React.Fragment>
+        {!articleNotFound &&
+          article && (
+            <div id="articlepagebox">
+              {article && (
+                <div id="articlepage">
+                  <div id="avatarbox">
+                    <img src={article.created_by.avatar_url} alt="Author" />
                   </div>
-                  <div id="articlepagepropbtns">
-                    <button
-                      onClick={() => this.handleArticleVote("up")}
-                      id="plusplus"
-                      className={userVoted === "up" ? "votedup" : ""}
-                    >
-                      ++
-                    </button>
-                    <span>/</span>
-                    <button
-                      onClick={() => this.handleArticleVote("down")}
-                      id="minusminus"
-                      className={userVoted === "down" ? "voteddown" : ""}
-                    >
-                      --
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div id="downarrows">
-                {downArrow}
-                {downArrow}
-              </div>
-            </div>
-            <div id="commentsbox">
-              <div id="sendcommentbox" className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <div>
-                    {currentUser && (
-                      <img id="thumb" alt="You!" src={currentUser.avatar_url} />
-                    )}
-                    <button
-                      onClick={this.handleSendBtnClick}
-                      className="btn btn-outline-secondary"
-                      type="button"
-                    >
-                      Send
-                    </button>
-                  </div>
-                </div>
-
-                <input
-                  value={userComment}
-                  onChange={this.handleFormInput}
-                  onKeyUp={this.handleFormEnter}
-                  type="text"
-                  className="form-control"
-                  placeholder="Have your say..."
-                  aria-label=""
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-              {!comments.length && (
-                <div>No comments yet, why not share your thoughts...</div>
-              )}
-              {comments.map((comment, i) => {
-                return (
-                  <div
-                    key={`comment${i}`}
-                    className={`singlecomment ${
-                      i % 2 === 0 ? "oddcomment" : "evencomment"
-                    }`}
-                  >
-                    <div id="commentflex">
-                      <div id="commentpropbtns">
-                        <div id="commentvotes">{comment.votes}</div>
+                  <h3>
+                    {article.created_by.username} <cite>presents:</cite>
+                  </h3>
+                  <h1>{article.title}</h1>
+                  <p>{article.body}</p>
+                  <div id="proparrowbox">
+                    <div>Join the conversation!</div>
+                    <div id="rightarrows">
+                      {rightArrow}
+                      {rightArrow}
+                      <div id="articlepageprops">
                         <div>
+                          <h1>{article.votes}</h1>
+                          <p>Community props passed</p>
+                        </div>
+                        <div id="articlepagepropbtns">
                           <button
-                            onClick={() =>
-                              this.handleCommentVote(comment._id, "up")
-                            }
+                            onClick={() => this.handleArticleVote("up")}
                             id="plusplus"
-                            className={
-                              comment.userVoted === "up" ? "votedup" : ""
-                            }
+                            className={userVoted === "up" ? "votedup" : ""}
                           >
                             ++
                           </button>
                           <span>/</span>
                           <button
-                            onClick={() =>
-                              this.handleCommentVote(comment._id, "down")
-                            }
+                            onClick={() => this.handleArticleVote("down")}
                             id="minusminus"
-                            className={
-                              comment.userVoted === "down" ? "voteddown" : ""
-                            }
+                            className={userVoted === "down" ? "voteddown" : ""}
                           >
                             --
                           </button>
                         </div>
                       </div>
-                      <div id="commenttext">
-                        <p>
-                          <cite>
-                            Posted by{" "}
-                            <Link to={`/${comment.created_by.username}`}>
-                              {comment.created_by.username}
-                            </Link>
-                          </cite>{" "}
-                          -{" "}
-                          <span
-                            data-tip={moment(comment.created_at).format(
-                              "Do MMMM, h:mm:ss a"
-                            )}
-                          >
-                            {moment(comment.created_at).fromNow()}
-                          </span>
-                        </p>
-                        <p>{comment.body}</p>
-                      </div>
-                      {currentUser._id === comment.created_by._id && (
-                        <div id="commentdeletebox">
-                          {deletePressed !== comment._id && (
-                            <p
-                              className="clickable"
-                              onClick={() =>
-                                this.handleDeletePress(comment._id)
-                              }
-                            >
-                              <cite>delete</cite>
-                            </p>
-                          )}
-                          {deletePressed === comment._id && (
-                            <p>
-                              <cite>Are you sure?</cite>{" "}
-                              <cite
-                                className="clickable"
-                                onClick={() =>
-                                  this.handleConfirmPress(true, comment._id)
-                                }
-                              >
-                                Yes
-                              </cite>
-                              {" / "}
-                              <cite
-                                className="clickable"
-                                onClick={() =>
-                                  this.handleConfirmPress(false, comment._id)
-                                }
-                              >
-                                No
-                              </cite>
-                            </p>
-                          )}
-                        </div>
-                      )}
-                      <ReactTooltip />
+                    </div>
+                    <div id="downarrows">
+                      {downArrow}
+                      {downArrow}
                     </div>
                   </div>
-                );
-              })}
+                  <div id="commentsbox">
+                    <div id="sendcommentbox" className="input-group mb-3">
+                      <div className="input-group-prepend">
+                        <div>
+                          {currentUser && (
+                            <img
+                              id="thumb"
+                              alt="You!"
+                              src={currentUser.avatar_url}
+                            />
+                          )}
+                          <button
+                            onClick={this.handleSendBtnClick}
+                            className="btn btn-outline-secondary"
+                            type="button"
+                          >
+                            Send
+                          </button>
+                        </div>
+                      </div>
+
+                      <input
+                        value={userComment}
+                        onChange={this.handleFormInput}
+                        onKeyUp={this.handleFormEnter}
+                        type="text"
+                        className="form-control"
+                        placeholder="Have your say..."
+                        aria-label=""
+                        aria-describedby="basic-addon1"
+                      />
+                    </div>
+                    {!comments.length && (
+                      <div>No comments yet, why not share your thoughts...</div>
+                    )}
+                    {comments.map((comment, i) => {
+                      return (
+                        <div
+                          key={`comment${i}`}
+                          className={`${
+                            i % 2 === 0 ? "oddcomment" : "evencomment"
+                          }`}
+                        >
+                          <div id="commentflex">
+                            <div id="commentpropbtns">
+                              <div id="commentvotes">{comment.votes}</div>
+                              <div>
+                                <button
+                                  onClick={() =>
+                                    this.handleCommentVote(comment._id, "up")
+                                  }
+                                  id="plusplus"
+                                  className={
+                                    comment.userVoted === "up" ? "votedup" : ""
+                                  }
+                                >
+                                  ++
+                                </button>
+                                <span>/</span>
+                                <button
+                                  onClick={() =>
+                                    this.handleCommentVote(comment._id, "down")
+                                  }
+                                  id="minusminus"
+                                  className={
+                                    comment.userVoted === "down"
+                                      ? "voteddown"
+                                      : ""
+                                  }
+                                >
+                                  --
+                                </button>
+                              </div>
+                            </div>
+                            <div id="commenttext">
+                              <p>
+                                <cite>
+                                  Posted by{" "}
+                                  <Link to={`/${comment.created_by.username}`}>
+                                    {comment.created_by.username}
+                                  </Link>
+                                </cite>{" "}
+                                -{" "}
+                                <span
+                                  data-tip={moment(comment.created_at).format(
+                                    "Do MMMM, h:mm:ss a"
+                                  )}
+                                >
+                                  {moment(comment.created_at).fromNow()}
+                                </span>
+                              </p>
+                              <p>{comment.body}</p>
+                            </div>
+                            {currentUser._id === comment.created_by._id && (
+                              <div id="commentdeletebox">
+                                {deletePressed !== comment._id && (
+                                  <p
+                                    className="clickable"
+                                    onClick={() =>
+                                      this.handleDeletePress(comment._id)
+                                    }
+                                  >
+                                    <cite>delete</cite>
+                                  </p>
+                                )}
+                                {deletePressed === comment._id && (
+                                  <p>
+                                    <cite>Are you sure?</cite>{" "}
+                                    <cite
+                                      className="clickable"
+                                      onClick={() =>
+                                        this.handleConfirmPress(
+                                          true,
+                                          comment._id
+                                        )
+                                      }
+                                    >
+                                      Yes
+                                    </cite>
+                                    {" / "}
+                                    <cite
+                                      className="clickable"
+                                      onClick={() =>
+                                        this.handleConfirmPress(
+                                          false,
+                                          comment._id
+                                        )
+                                      }
+                                    >
+                                      No
+                                    </cite>
+                                  </p>
+                                )}
+                              </div>
+                            )}
+                            <ReactTooltip />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        {!articleNotFound && !article && <Loading />}
+        {articleNotFound && <BadRoute missing={"article"} />}
+      </React.Fragment>
     );
   }
 

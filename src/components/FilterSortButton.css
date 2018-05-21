@@ -1,9 +1,10 @@
 .filtersortbutton {
-  width: 15%;
+  width: 20%;
   height: 90%;
   border-radius: 10px;
   background-color: transparent;
-  border: 3px solid red;
+  border: 3px solid #6d6d6d;
+  color: #6d6d6d;
   white-space: normal;
   text-align: center;
   word-wrap: break-word;
@@ -12,8 +13,10 @@
 
 .filtersortbutton:hover {
   cursor: pointer;
+  color: #c7002f;
+  border-color: #c7002f;
 }
 
 .filtersortchosen {
-  background-color: aqua;
+  background-color: #ececec;
 }

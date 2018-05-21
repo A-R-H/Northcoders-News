@@ -1,15 +1,14 @@
 #articlesunderbox {
   min-height: 85%;
-  height: 85%;
   display: flex;
   flex-flow: row nowrap;
+  background-color: #dbdbdb;
 }
 
 #mainarticles {
   min-height: 100%;
   height: 100%;
   width: 70%;
-  /* outline: 1px solid green; */
 }
 
 .articlesheaders {
@@ -25,24 +24,83 @@
 }
 
 .articlesbodies {
-  /* padding: 0.6em;
-  padding-left: 1.2em; */
   white-space: normal;
   word-wrap: break-word;
   margin-left: 1.2em;
   margin: 0.6em;
 }
 
+.articlesheaders a {
+  color: black;
+}
+
+.card-header {
+  background-color: #c7002f;
+}
+
+.card-body {
+  background-color: #272727;
+}
+
+.card-body a {
+  color: #c7002f;
+}
+
 #sortbar {
-  height: 60%;
+  height: 40vh;
+  max-height: 500px;
   width: 30%;
-  background-color: lightsalmon;
+  background-color: #272727;
+  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  animation: dropin 0.8s;
+  animation-iteration-count: 1;
+}
+
+@keyframes dropin {
+  from {
+    height: 1px;
+  }
+  to {
+  }
+}
+
+#sortbar > * {
+  animation: appear 0.8s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+}
+
+@keyframes appear {
+  99% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+#sortbar > p {
+  margin-top: 8%;
+}
+
+#sortbar p {
+  color: #6d6d6d;
 }
 
 #filterbuttonbox {
   display: flex;
   flex-flow: row nowrap;
   height: 15%;
-  outline: 1px solid black;
   justify-content: space-around;
+}
+
+#sortbuttonbox {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 15%;
+  justify-content: space-around;
+  margin-top: 10%;
 }

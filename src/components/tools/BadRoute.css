@@ -1,0 +1,9 @@
+#badroutebox {
+  height: 85%;
+  width: 100%;
+  background-color: gainsboro;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+}

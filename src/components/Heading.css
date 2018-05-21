@@ -1,20 +1,20 @@
 #headingbox {
   width: 100%;
   height: 15%;
-  background-color: palegoldenrod;
+  background-color: #ececec;
   display: flex;
   flex-flow: column nowrap;
 }
 
 #newslogo {
   width: 100%;
-  height: 60%;
+  height: 55%;
   text-align: center;
 }
 
 #headunderlinks {
-  height: 40%;
-  background-color: chartreuse;
+  height: 45%;
+  background-color: #272727;
   width: 100%;
   display: grid;
   grid-template-areas: "nav space profile";
@@ -23,18 +23,19 @@
 
 #ncnewstext {
   margin-top: 0.5em;
-  font-size: 30pt;
+  font-size: 25pt;
 }
 
 #topicnavs {
   grid-area: "nav";
   width: 100%;
-  /* border: 1px solid black; */
+  color: #6d6d6d;
 }
 
 #navtext {
   height: 50%;
   text-align: center;
+  color: #6d6d6d;
 }
 
 #innernavs {
@@ -42,6 +43,14 @@
   flex-flow: row nowrap;
   overflow: auto;
   justify-content: space-around;
+}
+
+#innernavs a {
+  color: #6d6d6d;
+}
+
+#innernavs a:hover {
+  color: #c7002f;
 }
 
 #topicnavs ul {
@@ -55,8 +64,22 @@
 #headprofile {
   grid-area: "profile";
   width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
 }
 
-#space {
-  grid-area: "space";
+#headprofile button {
+  background-color: transparent;
+  color: #6d6d6d;
+  border: 3px solid #6d6d6d;
+  border-radius: 5px;
+  padding: 2px;
+  margin-top: 0.6em;
+  margin-right: 2em;
+}
+
+#headprofile .activebtn button:hover {
+  color: #c7002f;
+  border-color: #c7002f;
+  cursor: pointer;
 }

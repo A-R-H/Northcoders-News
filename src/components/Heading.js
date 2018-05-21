@@ -12,7 +12,9 @@ const Heading = ({ currentUser }) => (
         <div id="navtext">View Articles</div>
         <div id="innernavs">
           <p>
-            <Link to="/articles">All</Link>
+            <Link to={{ pathname: "/articles", state: { filtering: "All" } }}>
+              All
+            </Link>
           </p>
           <p>|</p>
           <p>
@@ -42,13 +44,15 @@ const Heading = ({ currentUser }) => (
       </div>
       <div id="space" />
       <div id="headprofile">
-        <Link to="/post">
+        <Link className="activebtn" to="/post">
           <button>Post article</button>
         </Link>
-        <Link to={`/${currentUser}`}>
+        <Link className="activebtn" to={`/${currentUser}`}>
           <button>View profile</button>
         </Link>
-        <button disabled>Log out</button>
+        <a>
+          <button disabled>Log out</button>
+        </a>
       </div>
     </div>
   </div>
