@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PT from "prop-types";
 import { Link } from "react-router-dom";
 import {
   getArticleById,
@@ -425,5 +426,9 @@ class ArticlePage extends Component {
     }
   };
 }
+
+ArticlePage.propTypes = {
+  currentUser: PT.string
+};
 
 export default ArticlePage;

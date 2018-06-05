@@ -1,4 +1,5 @@
 import React from "react";
+import PT from "prop-types";
 import "./FilterSortButton.css";
 
 const FilterSortButton = ({
@@ -16,5 +17,12 @@ const FilterSortButton = ({
     {whatFilter}
   </button>
 );
+
+FilterSortButton.propTypes = {
+  whatFilter: PT.string,
+  handleFilterSortButton: PT.func,
+  filtering: PT.string,
+  type: PT.string
+};
 
 export default FilterSortButton;

@@ -114,25 +114,25 @@ class Articles extends Component {
                   whatFilter="All"
                   handleFilterSortButton={this.handleFilterSortButton}
                   filtering={filtering}
-                  type={"filtering"}
+                  type="filtering"
                 />
                 <FilterSortButton
                   whatFilter="Coding"
                   handleFilterSortButton={this.handleFilterSortButton}
                   filtering={filtering}
-                  type={"filtering"}
+                  type="filtering"
                 />
                 <FilterSortButton
                   whatFilter="Cooking"
                   handleFilterSortButton={this.handleFilterSortButton}
                   filtering={filtering}
-                  type={"filtering"}
+                  type="filtering"
                 />
                 <FilterSortButton
                   whatFilter="Football"
                   handleFilterSortButton={this.handleFilterSortButton}
                   filtering={filtering}
-                  type={"filtering"}
+                  type="filtering"
                 />
               </div>
               <div id="sortbuttonbox">

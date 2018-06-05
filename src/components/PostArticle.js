@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PT from "prop-types";
 import { postArticle, getUserByUsername } from "../api";
 import "./PostArticle.css";
 
@@ -98,5 +99,9 @@ class PostArticle extends Component {
     }
   };
 }
+
+PostArticle.propTypes = {
+  currentUser: PT.string
+};
 
 export default PostArticle;

@@ -1,4 +1,5 @@
 import React from "react";
+import PT from "prop-types";
 import { Link } from "react-router-dom";
 import "./Heading.css";
 
@@ -57,5 +58,9 @@ const Heading = ({ currentUser }) => (
     </div>
   </div>
 );
+
+Heading.propTypes = {
+  currentUser: PT.string
+};
 
 export default Heading;
