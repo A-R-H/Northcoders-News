@@ -115,11 +115,11 @@ class ArticlePage extends Component {
                   <h1>{article.title}</h1>
                   <p>{article.body}</p>
                   <div id="proparrowbox">
-                    <div>Join the conversation!</div>
-                    <div id="rightarrows">
+                    <div id="votebelow">Vote and have your say below!</div>
+                    <div id="rightarrows" className="gonearrows">
                       {rightArrow}
                       {rightArrow}
-                      <div id="articlepageprops">
+                      <div id="articlepageprops" className="gonearrows">
                         <div>
                           <h1>{article.votes}</h1>
                           <p>Community props passed</p>
@@ -143,7 +143,7 @@ class ArticlePage extends Component {
                         </div>
                       </div>
                     </div>
-                    <div id="downarrows">
+                    <div id="downarrows" className="gonearrows">
                       {downArrow}
                       {downArrow}
                     </div>

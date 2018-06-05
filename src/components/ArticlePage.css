@@ -54,6 +54,10 @@
   flex-flow: column nowrap;
 }
 
+#votebelow {
+  font-size: 3vw;
+}
+
 #rightarrows {
   margin-left: 55%;
   display: flex;
@@ -100,6 +104,16 @@
   display: flex;
   flex-flow: column nowrap;
   margin: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .gonearrows svg {
+    display: none;
+  }
+
+  #proparrowbox * {
+    margin: 0 auto;
+  }
 }
 
 #commentsbox {
