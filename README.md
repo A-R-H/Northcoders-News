@@ -1,39 +1,24 @@
-## Northcoders News
+# Northcoders News
 
-Northcoders News is a social news aggregation, web content rating, and discussion website. Think something along the lines of [Reddit](https://www.reddit.com/).
+This project is available hosted on Heroku at https://alex-nc-news.herokuapp.com/.
 
-Northcoders News has articles which are divided into topics. Each article has user curated ratings and can be up or down voted using the API. Users can also add comments about an article. Comments can also be up or down voted. A user can add comments and remove any comments which they have added.
+This was the result of a 3 day sprint project to create a news article aggregator site (in the style of Reddit) using React that used a specific set of api endpoints from an Express server that had been previously created and deployed on Heroku. The repository of the back-end is available at https://github.com/A-R-H/Northcoders-News-Back-End.
 
-This review sprint should consolidate your understanding of making a [C.R.U.D](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application from a front end perspective.
+The main aim of the project was to increase my understanding of making a C.R.U.D application from a front-end perspective and to gain experience of building and linking the front and back-end of the same app.
 
-### Objectives
+## Built With
 
-1.  Pull together all the front-end skills, technologies and best practises you have learnt over the past three weeks.
-2.  Make asynchronous API calls to your own server.
-3.  Use HTTP request types to interact with your backend, and HTTP response codes to update your UI accordingly.
+- [react](https://reactjs.org/) - A JavaScript library for building user interfaces.
+- [create-react-app](https://www.npmjs.com/package/create-react-app) - Create React apps with no build configuration.
+- [axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and node.js.
+- [moment](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
 
-### What to do
+## Installing
 
-Use the generic react-project-checklist as a guide to setting up your app. Here are some project-specific things to bear in mind:
+This project can be cloned to your local machine using
 
-1.  Have a look at your API endpoints and at Reddit. Think about what data you have available, and how you will structure your application. What routes will your application have? What articles will you choose to display on the main page?
+```
+git clone https://github.com/A-R-H/Northcoders-News.git
+```
 
-2.  Think how you will isolate the concerns of your project - the structure of your components, the sourcing of your data, the styling.
-
-3.  What sort of routing does Reddit use? What sort of specificity do you think you will need? Remember, your urls don't have to directly correspond to your api endpoints, but they will provide some guidance.
-
-4.  Think about what data each component will need. Where will it come from? When should components find their own data and when should they load it themselves? Focus on loading a list of articles for your front page first of all.
-
-5.  Consider more complex functionality: how do you want to allow changes to your database? Think about how you will attribute users to posted comments etc. How will you know what comments/articles a user should be allowed to delete? How about sorting data, or paginating responses?
-
-6.  How are you going to make this a fluid and engaging experience for users, so they want to come back for more?
-
-### Extra credit
-
-1.  Create a route which shows which users have been most active adding articles and comments
-2.  Make this route sort the users by how popular they are based on an aggregation of their article and comment vote counts
-3.  Implement a filter which re-orders comments based on either the time they were added, or how many votes they have got.
-
-### Important
-
-This sprint is among the ones we'll ask you to complete in order to put you forward for jobs. Put a little bit of love into it! :)
+Once cloned `npm install` can be ran from inside the directory to download the required dependencies and `npm start` can be ran to open the app locally.
