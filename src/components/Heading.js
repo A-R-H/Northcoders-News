@@ -5,7 +5,7 @@ import "./Heading.css";
 
 const Heading = ({ currentUser }) => (
   <div id="headingbox">
-    <div id="newslogo">
+    <div id="newslogo" className="container">
       <div id="ncnewstext">Northcoders News</div>
     </div>
     <div id="headunderlinks">
@@ -51,9 +51,6 @@ const Heading = ({ currentUser }) => (
         <Link className="activebtn" to={`/${currentUser}`}>
           <button>View profile</button>
         </Link>
-        <a>
-          <button disabled>Log out</button>
-        </a>
       </div>
     </div>
   </div>

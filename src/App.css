@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+html {
+  background-color: #ececec;
+}
+
 body {
   height: 100vh;
 }
