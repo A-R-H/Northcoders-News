@@ -58,6 +58,15 @@
   animation-iteration-count: 1;
 }
 
+@media screen and (max-width: 768px) {
+  #sortbar {
+    display: none;
+  }
+  #mainarticles {
+    width: 100%;
+  }
+}
+
 @keyframes dropin {
   from {
     height: 1px;
