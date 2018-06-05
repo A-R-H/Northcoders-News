@@ -17,11 +17,11 @@ class Articles extends Component {
       const articles = data.articles;
       const headPath = this.props.location.state;
       if (headPath) {
-        const headSlice = this.props.location.state.filtering.slice();
+        const { filtering } = this.props.location.state;
         this.props.location.state = null;
         this.setState({
           articles,
-          filtering: headSlice
+          filtering
         });
       } else {
         this.setState({
